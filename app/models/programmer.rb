@@ -21,14 +21,6 @@ class Programmer < ActiveRecord::Base
     lastfm.genres.collect{ |t| t['name'] }.include? genre
   end
   
-  def method_missing(method_sym, *arguments, &block)
-    if method_sym.to_s =~ /^listens_to_(.*)?\?$/
-      listens_to? parse_genre($1)
-    else
-      super
-    end
-  end
-  
   private
   
   def parse_genre(genre)

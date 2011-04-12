@@ -1,5 +1,6 @@
 class Programmer < ActiveRecord::Base
-  validates :lastfm_username, :github_username, :options = { :presence => true, :uniqueness => true }
+  validates :github_username, :presence => true, :uniqueness => true
+  validates :lastfm_username, :presence => true, :uniqueness => true
   
   attr_reader :github,
               :lastfm

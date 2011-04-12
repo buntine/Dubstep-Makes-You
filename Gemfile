@@ -29,3 +29,7 @@ gem 'sqlite3'
 # group :development, :test do
 #   gem 'webrat'
 # end
+
+gem 'octopi', '0.4.0'
+gem 'rockstar', '0.5.2'
+gem 'httparty', '0.7.4'

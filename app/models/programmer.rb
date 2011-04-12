@@ -6,11 +6,15 @@ class Programmer < ActiveRecord::Base
               :lastfm
   
   def github
-    @github ||= Octopi::User.search(github_username).first
+    @github ||= DubstepMakesYou::GitHub.new(github_username)
   end
   
   def lastfm
     @lastfm ||= DubstepMakesYou::LastFM.new(lastfm_username)
+  end
+
+  def skill
+    (github.popularity / github.days_since_last_commit).round
   end
   
   def listens_to?(genre)
@@ -23,32 +27,6 @@ class Programmer < ActiveRecord::Base
     else
       super
     end
-  end
-  
-  def popularity
-    github.followers.length + github.repos
-  end
-  
-  def skill
-    (popularity / days_since_last_commit).round
-  end
-  
-  def seconds_since_last_commit
-    last_push = Time.parse github.pushed
-    now       = Time.now
-    (now - last_push).round
-  end
-  
-  def minutes_since_last_commit
-    (seconds_since_last_commit / 60).round
-  end
-  
-  def hours_since_last_commit
-    (minutes_since_last_commit / 60).round
-  end
-  
-  def days_since_last_commit
-    (hours_since_last_commit / 24).round
   end
   
   private

@@ -19,6 +19,36 @@ module DubstepMakesYou
     end
   end
   
+  class GitHub
+    attr_reader :user
+    
+    def initialize(username)
+      @user = Octopi::User.search(username).first
+    end
+    
+    def popularity
+      user.followers.length + user.repos
+    end
+  
+    def seconds_since_last_commit
+      last_push = Time.parse user.pushed
+      now       = Time.now
+      (now - last_push).round
+    end
+  
+    def minutes_since_last_commit
+      (seconds_since_last_commit / 60).round
+    end
+  
+    def hours_since_last_commit
+      (minutes_since_last_commit / 60).round
+    end
+  
+    def days_since_last_commit
+      (hours_since_last_commit / 24).round
+    end
+  end
+  
   class LastFM
     attr_reader :user
     

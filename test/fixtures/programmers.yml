@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  github_username: MyString
+  lastfm_username: MyString
+  terms: MyString
+  terms_last_updated: 2011-04-12
+
+two:
+  github_username: MyString
+  lastfm_username: MyString
+  terms: MyString
+  terms_last_updated: 2011-04-12

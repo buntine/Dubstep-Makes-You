@@ -10,7 +10,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110412010638) do
+ActiveRecord::Schema.define(:version => 20110412235513) do
+
+  create_table "genres", :force => true do |t|
+    t.string   "name"
+    t.integer  "left"
+    t.integer  "right"
+    t.integer  "parent_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "programmers", :force => true do |t|
     t.string   "github_username"

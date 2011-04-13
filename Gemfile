@@ -30,6 +30,7 @@ gem 'sqlite3'
 #   gem 'webrat'
 # end
 
+gem 'eb_nested_set', '0.3.8'
 gem 'octopi', '0.4.0'
 gem 'rockstar', '0.5.2'
 gem 'httparty', '0.7.4'

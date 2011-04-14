@@ -84,4 +84,34 @@ module DubstepMakesYou
       artists.collect { |artist| get_terms_from_artist artist }.flatten
     end
   end
+  
+  class Parsers    
+    def self.parse_genre(obj,parent=nil)
+      if obj.class == String
+        # puts parent.nil? ? "#{obj}" : "#{parent} / #{obj}"
+        if parent.nil?
+          Genre.create!(:name => key)
+        else
+          parent = Genre.find_by_name(parent) unless parent.nil?
+          parent.children.create!(:name => obj)
+        end
+      elsif obj.class == Hash
+        obj.each do |key,value|
+          # puts parent.nil? ? "#{key}" : "#{parent} / #{key}"
+          if parent.nil?
+            genre = Genre.create(:name => key)
+            genre.save
+          else
+            parent = Genre.find_by_name(parent)
+            parent.children.create!(:name => key)
+          end
+          self.parse_genre(value,key)
+        end
+      elsif obj.class == Array
+        obj.each do |value|
+          self.parse_genre(value,parent)
+        end
+      end
+    end
+  end
 end

@@ -30,7 +30,8 @@ gem 'sqlite3'
 #   gem 'webrat'
 # end
 
-gem 'eb_nested_set', '0.3.8'
+gem 'eb_nested_set', :git => "git://github.com/brandonweiss/eb_nested_set.git"
 gem 'octopi', '0.4.0'
 gem 'rockstar', '0.5.2'
 gem 'httparty', '0.7.4'
+gem 'machinist', '2.0.0.beta2'

@@ -1,3 +1,9 @@
+GIT
+  remote: git://github.com/brandonweiss/eb_nested_set.git
+  revision: 71b7b71030116097e79a7bef02e77daedf9d3eae
+  specs:
+    eb_nested_set (0.3.8)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -32,13 +38,13 @@ GEM
     arel (2.0.9)
     builder (2.1.2)
     crack (0.1.8)
-    eb_nested_set (0.3.8)
     erubis (2.6.6)
       abstract (>= 1.0.0)
     hpricot (0.8.4)
     httparty (0.7.4)
       crack (= 0.1.8)
     i18n (0.5.0)
+    machinist (2.0.0.beta2)
     mail (2.2.15)
       activesupport (>= 2.3.6)
       i18n (>= 0.4.0)
@@ -86,8 +92,9 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  eb_nested_set (= 0.3.8)
+  eb_nested_set!
   httparty (= 0.7.4)
+  machinist (= 2.0.0.beta2)
   octopi (= 0.4.0)
   rails (= 3.0.6)
   rockstar (= 0.5.2)

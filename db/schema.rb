@@ -14,9 +14,9 @@ ActiveRecord::Schema.define(:version => 20110412235513) do
 
   create_table "genres", :force => true do |t|
     t.string   "name"
+    t.integer  "parent_id"
     t.integer  "left"
     t.integer  "right"
-    t.integer  "parent_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

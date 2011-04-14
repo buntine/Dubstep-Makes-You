@@ -1,0 +1,2 @@
+class ListensToController < ApplicationController
+end

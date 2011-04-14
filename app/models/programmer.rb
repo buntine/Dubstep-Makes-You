@@ -2,8 +2,10 @@ class Programmer < ActiveRecord::Base
   validates :github_username, :presence => true, :uniqueness => true
   validates :lastfm_username, :presence => true, :uniqueness => true
   
-  attr_reader :github,
-              :lastfm
+  has_many :listens_to, :as => :user
+  has_many :genres, :through => :listens_to
+  
+  attr_reader :github, :lastfm
   
   def github
     @github ||= DubstepMakesYou::GitHub.new(github_username)

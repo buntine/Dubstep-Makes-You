@@ -10,13 +10,21 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110412235513) do
+ActiveRecord::Schema.define(:version => 20110414233801) do
 
   create_table "genres", :force => true do |t|
     t.string   "name"
     t.integer  "parent_id"
     t.integer  "left"
     t.integer  "right"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "listens_tos", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "user_type"
+    t.integer  "genre_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

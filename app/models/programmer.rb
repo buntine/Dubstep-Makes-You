@@ -5,7 +5,9 @@ class Programmer < ActiveRecord::Base
   has_many :listens_to, :as => :user
   has_many :genres, :through => :listens_to
   
-  attr_reader :github, :lastfm
+  attr_reader :github, :lastfm  
+  
+  before_save :build_listens_to
   
   def github
     @github ||= DubstepMakesYou::GitHub.new(github_username)
@@ -28,4 +30,9 @@ class Programmer < ActiveRecord::Base
   def parse_genre(genre)
     genre.gsub('_',' ').downcase
   end
+  
+  def build_listens_to
+    # build all the listens to
+  end
+  
 end

@@ -1,8 +1,5 @@
 class ListensToController < ApplicationController
-  responds_to :html
-  
-  def index
-  end
+  respond_to :html
   
   def new
     @user = Programmer.new

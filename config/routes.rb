@@ -1,4 +1,7 @@
 Dubstepmakesyou::Application.routes.draw do
+  
+  root :to => "listens_to#new"
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

@@ -1,4 +1,6 @@
 class ListensToController < ApplicationController
+  responds_to :html
+  
   def index
   end
   
@@ -12,5 +14,6 @@ class ListensToController < ApplicationController
     elsif
       @user = Designer.create(params[:user])
     end
+    respond_with @user
   end
 end

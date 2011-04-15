@@ -37,9 +37,19 @@ GEM
     api_cache (0.2.3)
     arel (2.0.9)
     builder (2.1.2)
+    coffee-script (2.2.0)
+      coffee-script-source
+      execjs
+    coffee-script-source (1.0.1)
     crack (0.1.8)
     erubis (2.6.6)
       abstract (>= 1.0.0)
+    execjs (0.2.0)
+    formtastic (1.2.3)
+      actionpack (>= 2.3.7)
+      activesupport (>= 2.3.7)
+      i18n (~> 0.4)
+    haml (3.0.25)
     hpricot (0.8.4)
     httparty (0.7.4)
       crack (= 0.1.8)
@@ -92,7 +102,10 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  coffee-script
   eb_nested_set!
+  formtastic
+  haml
   httparty (= 0.7.4)
   machinist (= 2.0.0.beta2)
   octopi (= 0.4.0)

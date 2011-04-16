@@ -1,4 +1,9 @@
 %h2= @genre.name
+%ul
+  - if @genre.parent_id.nil?
+    %li= link_to 'Up a level...', genres_path
+  - else
+    %li= link_to 'Up a level...', genre_path(@genre.parent_id)
 %table{:border => 1, :width => '100%'}
   %thead
     %tr
@@ -10,5 +15,8 @@
       %td= @genre.programming_skill
     - for genre in @genre.children
       %tr
-        %td= link_to genre.name, genre_path(genre)
+        - if genre.descendants.empty?
+          %td= genre.name
+        - else
+          %td= link_to genre.name, genre_path(genre)
         %td= genre.descendant_programming_skill

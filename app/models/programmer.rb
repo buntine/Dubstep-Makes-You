@@ -2,10 +2,16 @@ class Programmer < ActiveRecord::Base
   validates :github_username, :presence => true, :uniqueness => true
   validates :lastfm_username, :presence => true, :uniqueness => true
   
+  belongs_to :user
+  has_one :user
+  
   has_many :listens_to, :as => :user
   has_many :genres, :through => :listens_to
   
   attr_reader :github, :lastfm
+  attr_accessor :type  
+  
+  before_save :build_listens_to
   
   def github
     @github ||= DubstepMakesYou::GitHub.new(github_username)
@@ -23,9 +29,16 @@ class Programmer < ActiveRecord::Base
     lastfm.genres.collect{ |t| t['name'] }.include? genre
   end
   
-  private
-  
   def parse_genre(genre)
     genre.gsub('_',' ').downcase
   end
+  
+  def build_listens_to
+    genres << self.lastfm.genres
+  end
+  
+  def is_valid_genre?(genre)
+    Genre.exists? :name => genre.titleize
+  end
+  
 end

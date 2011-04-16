@@ -1,4 +1,12 @@
 Dubstepmakesyou::Application.routes.draw do
+
+  resources :users do
+    resource :programmer
+  end
+  root :to => "users#new"
+  
+  
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

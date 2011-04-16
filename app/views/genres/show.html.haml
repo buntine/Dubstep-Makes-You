@@ -15,7 +15,7 @@
       %td= @genre.programming_skill
     - for genre in @genre.children
       %tr
-        - if genre.descendants.empty?
+        - if genre.children.empty?
           %td= genre.name
         - else
           %td= link_to genre.name, genre_path(genre)

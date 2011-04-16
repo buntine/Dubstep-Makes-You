@@ -1,0 +1,13 @@
+%ul
+  %li= link_to 'All Users', users_path
+  %li= link_to 'New User', new_user_path
+%h2= @user.lastfm_username
+%table{:border => 1, :width => '100%'}
+  %thead
+    %tr
+      %th GitHub Username
+      %th Dribbble Username
+  %tbody
+    %tr
+      %td= @user.programmer.github_username if @user.is_programmer?
+      %td= @user.designer.dribbble_username if @user.is_designer?

@@ -1,11 +1,19 @@
 class User < ActiveRecord::Base
-  belongs_to :user
+  validates :lastfm_username, :presence => true, :uniqueness => true
+  
   has_one :programmer
+  has_one :designer
+  has_many :genres, :through => :listens_to
   
-  attr_accessor :github_username, :dribbble_username, :lastfm_username
+  def music
+    @lastfm ||= DubstepMakesYou::LastFM.new lastfm_username
+  end
   
-  def has_genres?
-    self.designer.genres.empty? if designer
-    self.programmer.genres.empty? if programmer
+  def is_programmer?
+    !self.programmer.nil?
+  end
+  
+  def is_designer?
+    !self.designer.nil?
   end
 end

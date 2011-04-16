@@ -2,8 +2,9 @@ Dubstepmakesyou::Application.routes.draw do
 
   resources :users do
     resource :programmer
+    resource :designer
   end
-  root :to => "users#new"
+  root :to => "users#index"
   
   
   

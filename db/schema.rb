@@ -10,7 +10,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110415103204) do
+ActiveRecord::Schema.define(:version => 20110416042239) do
+
+  create_table "designers", :force => true do |t|
+    t.string   "dribbble_username"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "genres", :force => true do |t|
     t.string   "name"
@@ -31,9 +38,6 @@ ActiveRecord::Schema.define(:version => 20110415103204) do
 
   create_table "programmers", :force => true do |t|
     t.string   "github_username"
-    t.string   "lastfm_username"
-    t.string   "terms"
-    t.date     "terms_last_updated"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
@@ -43,7 +47,9 @@ ActiveRecord::Schema.define(:version => 20110415103204) do
     t.string   "type"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "programmer_id"
+    t.string   "dribbble_username"
+    t.string   "lastfm_username"
+    t.string   "github_username"
   end
 
 end

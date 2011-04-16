@@ -1,25 +1,22 @@
 class UsersController < ApplicationController
   respond_to :html
   
+  def index
+    @users = User.find :all
+  end
+  
   def new
     @user = User.new
   end
 
   def create
-    @user = User.create :type => params[:user][:type]
+    @user = User.create! :lastfm_username => params[:user][:lastfm_username]
     if params[:user][:type] == 'Programmer'
-      @programmer = Programmer.create! :github_username => params[:user][:github_username], :lastfm_username => params[:user][:lastfm_username]
-      @user.programmer = @programmer
-      @programmer.user = @user
+      @user.programmer = Programmer.create! :github_username => params[:user][:github_username]
     elsif params[:user][:type] == 'Designer'
-      designer = Designer.create! :dribbble_username => params[:user][:dribbble_username], :lastfm_username => params[:user][:lastfm_username]
-      @user.designer = @designer
-      @designer.user = @user
+      @user.designer = Designer.create! :dribbble_username => params[:user][:dribbble_username]
     end
-    if @user.save!
-      cookies.permanent[:last_product_id] = @product.id
-      redirect_to @user
-    end
+    redirect_to :action => 'show'
   end
   
   def show

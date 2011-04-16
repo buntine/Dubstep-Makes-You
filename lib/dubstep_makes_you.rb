@@ -50,7 +50,7 @@ module DubstepMakesYou
   end
   
   class LastFM
-    attr_reader :user
+    attr_reader :user, :genres
     
     def initialize(username)
       @user = Rockstar::User.find(username)
@@ -61,7 +61,7 @@ module DubstepMakesYou
     end
     
     def genres
-      EchoNest.get_terms_from_artists top_artists
+      @genres ||= EchoNest.get_terms_from_artists top_artists
     end
   end
   

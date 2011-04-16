@@ -3,7 +3,10 @@ class User < ActiveRecord::Base
   
   has_one :programmer
   has_one :designer
+  has_many :listens_to
   has_many :genres, :through => :listens_to
+  
+  before_save :update_genres
   
   def music
     @lastfm ||= DubstepMakesYou::LastFM.new lastfm_username
@@ -15,5 +18,11 @@ class User < ActiveRecord::Base
   
   def is_designer?
     !self.designer.nil?
+  end
+  
+  private
+  
+  def update_genres
+    self.genres = Genre.where(:name => self.music.genres).all
   end
 end

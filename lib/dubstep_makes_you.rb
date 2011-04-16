@@ -90,20 +90,20 @@ module DubstepMakesYou
       if obj.class == String
         # puts parent.nil? ? "#{obj}" : "#{parent} / #{obj}"
         if parent.nil?
-          Genre.create!(:name => key)
+          Genre.create!(:name => key.downcase)
         else
-          parent = Genre.find_by_name(parent) unless parent.nil?
-          parent.children.create!(:name => obj)
+          parent = Genre.find_by_name(parent.downcase) unless parent.nil?
+          parent.children.create!(:name => obj.downcase)
         end
       elsif obj.class == Hash
         obj.each do |key,value|
           # puts parent.nil? ? "#{key}" : "#{parent} / #{key}"
           if parent.nil?
-            genre = Genre.create(:name => key)
+            genre = Genre.create(:name => key.downcase)
             genre.save
           else
-            parent = Genre.find_by_name(parent)
-            parent.children.create!(:name => key)
+            parent = Genre.find_by_name(parent.downcase)
+            parent.children.create!(:name => key.downcase)
           end
           self.parse_genre(value,key)
         end

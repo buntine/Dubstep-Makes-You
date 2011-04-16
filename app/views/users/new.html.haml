@@ -1,0 +1,8 @@
+- semantic_form_for @user do |f|
+  - f.inputs :title => "I am a ..." do
+    = f.input :type, :as => :select, :collection => ['Programmer','Designer'], :include_blank => false
+  - f.inputs :type => :usernames, :id => 'signup' do
+    = f.input :github_username
+    = f.input :dribbble_username
+    = f.input :lastfm_username
+  = f.submit

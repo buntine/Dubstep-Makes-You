@@ -1,5 +1,5 @@
 Dubstepmakesyou::Application.routes.draw do
-
+  resources :genres
   resources :users do
     resource :programmer
     resource :designer

@@ -3,12 +3,16 @@ class Programmer < ActiveRecord::Base
   belongs_to :user
   attr_reader :account
   
+  before_save :get_skill
+  
   def account
     @account ||= DubstepMakesYou::GitHub.new github_username
   end
+  
+  protected
 
-  def level
-    (account.popularity / account.days_since_last_commit).round
+  def get_skill
+    self.skill = (account.popularity / account.days_since_last_commit).round
   end
   
 end

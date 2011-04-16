@@ -1,0 +1,14 @@
+%h2= @genre.name
+%table{:border => 1, :width => '100%'}
+  %thead
+    %tr
+      %th Genre Name
+      %th Collective Programming Level
+  %tbody
+    %tr
+      %td= link_to @genre.name, genre_path(@genre)
+      %td= @genre.programming_skill
+    - for genre in @genre.children
+      %tr
+        %td= link_to genre.name, genre_path(genre)
+        %td= genre.descendant_programming_skill

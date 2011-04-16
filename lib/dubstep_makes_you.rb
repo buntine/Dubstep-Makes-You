@@ -1,22 +1,12 @@
 module DubstepMakesYou
   extend self
   
-  attr_reader :echonest_api_key,
-              :lastfm_api_key,
-              :lastfm_api_secret
+  ECHONEST_API_KEY = ENV['echonest_api_key']
   
   def load_config(path)
     file = YAML.load_file path
-    @echonest_api_key  = file['echonest']['api_key']
+    ENV['echonest_api_key']  = file['echonest']['api_key']
     Rockstar.lastfm=file['lastfm']
-  end
-  
-  def is_setup?
-    if(@echonest_api_key.nil? || Rockstar.lastfm_api_key.nil? || Rockstar.lastfm_api_key.nil?)
-      return false
-    else
-      return true
-    end
   end
   
   class GitHub
@@ -72,7 +62,7 @@ module DubstepMakesYou
     def self.get_terms_from_artist(artist)
       artist = artist.class == String ? artist : artist.name
       request = get '/api/v4/artist/terms', { :query => {
-        :api_key => DubstepMakesYou.echonest_api_key,
+        :api_key => DubstepMakesYou::ECHONEST_API_KEY,
         :format  => 'json',
         :name    => artist
       }}

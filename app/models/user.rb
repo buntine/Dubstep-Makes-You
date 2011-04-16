@@ -20,6 +20,10 @@ class User < ActiveRecord::Base
     !self.designer.nil?
   end
   
+  def listens_to?(genre)
+    self.genres.collect(&:name).includes? genre
+  end
+  
   private
   
   def update_genres

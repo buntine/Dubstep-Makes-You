@@ -1,4 +1,7 @@
 %h2 Genres
+
+%canvas#processing
+
 %table{:border => 1, :width => '100%'}
   %thead
     %tr
@@ -6,6 +9,6 @@
       %th Collective Programming Level
   %tbody
     - for genre in @genres
-      %tr
-        %td= link_to genre.name, genre_path(genre)
-        %td= genre.descendant_programming_skill
+      %tr.genre
+        %td.name= link_to genre.name, genre_path(genre)
+        %td.programming_skill= genre.descendant_programming_skill

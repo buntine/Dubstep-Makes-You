@@ -15,18 +15,14 @@ class Genre < ActiveRecord::Base
   end
   
   def descendant_programming_skill
-    total = 0
-    self.descendants.each do |genre|
-      total += genre.programming_skill
+    self.descendents.inject(self.programming_skill) do |total, g|
+      total + g.programming_skill
     end
-    return total + self.programming_skill
   end
   
   def programming_skill
-    total = 0
-    self.users.each do |user|
-      total += user.programmer.skill if user.is_programmer?
+    self.users.inject(0) do |total, u|
+      u.is_programmer? ? (total + u.programmer.skill) : total
     end
-    return total
   end
 end
